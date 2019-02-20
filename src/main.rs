@@ -1,17 +1,20 @@
+#[macro_use]
 extern crate clap;
 extern crate log;
 extern crate simplelog;
-use clap::{Arg, App};
+use clap::{Arg, AppSettings, App};
 
-mod parser;
+pub mod parser;
 
 use parser::vasp::poscar;
 
 fn main() {
-    let matches = App::new("$1")
-        .version("0.1.0")
+    let matches = App::new(crate_name!())
+        .setting(AppSettings::ColorAuto)
+        .setting(AppSettings::ColoredHelp)
+        .version(crate_version!())
         .author("Alejandro Gallo <aamsgallo@gmail.com>")
-        .about("$2")
+        .about(crate_description!())
         .arg(Arg::with_name("file")
              .takes_value(true)
              .short("f"))
