@@ -17,9 +17,9 @@ matrix:
       env: TARGET=x86_64-pc-windows-msvc
 
     # Minimum Rust supported channel.
-    - os: linux
-      rust: 1.29.0
-      env: TARGET=x86_64-unknown-linux-gnu
+    #- os: linux
+      #rust: 1.29.0
+      #env: TARGET=x86_64-unknown-linux-gnu
 
 env:
   global:
