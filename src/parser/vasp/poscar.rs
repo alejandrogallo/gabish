@@ -129,6 +129,8 @@ pub fn parse(filepath: &str) -> Result<Poscar, ParseError> {
         log::error!("Number of coordinates and atoms is different!");
         return Err(ParseError {});
     }
+    log::debug!("Natoms {}", poscar.natoms);
+    log::debug!("Mode   {}", poscar.modeline);
 
     Ok(poscar)
 
