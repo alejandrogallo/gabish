@@ -30,7 +30,5 @@ fn main() {
     ).unwrap();
 
     let filename = matches.value_of("file").unwrap_or("default value");
-
     let _p = poscar::parse(filename).unwrap();
-
 }
