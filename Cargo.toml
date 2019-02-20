@@ -1,0 +1,11 @@
+[package]
+name = "poscar"
+version = "0.1.0"
+authors = ["Alejandro Gallo <aamsgallo@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+regex = "1.1.0"
+clap = "2.32.0"
+log = "0.4.6"
+simplelog = "0.5.3"
