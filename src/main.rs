@@ -28,6 +28,6 @@ fn main() {
 
     let filename = matches.value_of("file").unwrap_or("default value");
 
-    poscar::parse(filename);
+    let _p = poscar::parse(filename).unwrap();
 
 }
