@@ -115,7 +115,8 @@ pub fn parse(filepath: &str) -> Result<Poscar, ParseError> {
                 let vec: Vec<f64> = parse_vector(line)?;
                 if poscar.coordinates.len() >= poscar.natoms {
                     log::warn!(
-                        "All coordinates retrieved, stopping"
+                        "All coordinates retrieved, stopping at line {}",
+                        lineno
                     );
                     break;
                 }
@@ -124,5 +125,11 @@ pub fn parse(filepath: &str) -> Result<Poscar, ParseError> {
         }
     }
 
+    if poscar.coordinates.len() != poscar.natoms {
+        log::error!("Number of coordinates and atoms is different!");
+        return Err(ParseError {});
+    }
+
     Ok(poscar)
+
 }
