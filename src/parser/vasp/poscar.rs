@@ -99,7 +99,6 @@ pub fn parse(filepath: &str) -> Result<Poscar, ParseError> {
             2 => poscar.header_constant = line.parse::<f64>().unwrap_or(0.0),
             3 | 4 | 5 => {
                 let vec: Vec<f64> = parse_vector(line)?;
-                println!("{:?}", vec);
                 poscar.basis.push(vec);
             },
             6 => {
@@ -114,10 +113,15 @@ pub fn parse(filepath: &str) -> Result<Poscar, ParseError> {
             8 => poscar.modeline = line.to_string(),
             _ => {
                 let vec: Vec<f64> = parse_vector(line)?;
+                if poscar.coordinates.len() >= poscar.natoms {
+                    log::warn!(
+                        "All coordinates retrieved, stopping"
+                    );
+                    break;
+                }
                 poscar.coordinates.push(vec);
             },
         }
-
     }
 
     Ok(poscar)
